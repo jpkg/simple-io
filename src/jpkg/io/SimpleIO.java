@@ -1,14 +1,12 @@
 package jpkg.io;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 /**
  * This class makes quick reading from and writing to of files convenient. 
@@ -29,21 +27,9 @@ public class SimpleIO {
 	 * @throws IOException if any problems are encountered
 	 */
 	public static String readFileToString(File f, Charset c) throws IOException {
-		// TODO speed up more
+		byte[] bytes = Files.readAllBytes(f.toPath());
 		
-		char[] buff = new char[DEFAULT_BUFFER_SIZE];
-		
-		StringBuilder ret = new StringBuilder();
-		FileInputStream fis = new FileInputStream(f);
-		InputStreamReader fr = new InputStreamReader(fis, c);
-		BufferedReader br = new BufferedReader(fr);
-		
-		while(br.read(buff) != -1) {
-			ret.append(buff);
-		}
-		
-		br.close();
-		return ret.toString();
+		return new String(bytes, c);
 	}
 	
 	/**

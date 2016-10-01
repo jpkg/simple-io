@@ -1,0 +1,2 @@
+dependencies=
+output-jar=bin/simple-io-${branch}.jar

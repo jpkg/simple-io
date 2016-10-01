@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -71,5 +70,30 @@ public class SimpleIO {
 		
 		bw.write(s);
 		bw.close();
+	}
+	
+	/**
+	 * Write to file and swallow exceptions
+	 */
+	public static void writeSwallowed(String s, File f, boolean showexception) {
+		try {
+			writeStringToFile(s, f);
+		} catch (IOException e) {
+			if(showexception)
+				e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Read from file and swallow exceptions
+	 */
+	public static String readSwallowed(File f, String defaultreturn, boolean showexception) {
+		try {
+			return readFileToString(f);
+		} catch (IOException e) {
+			if(showexception)
+				e.printStackTrace();
+			return defaultreturn;
+		}
 	}
 }

@@ -16,7 +16,6 @@ import java.nio.file.Files;
  */
 public class SimpleIO {
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
-	public static final int DEFAULT_BUFFER_SIZE = 4096;
 	
 	/**
 	 * Read file into a String. This method is discouraged unless you're
